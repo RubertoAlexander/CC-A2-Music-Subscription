@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <form method="post">
+        <label for="email">Email</label>
+        <input name="email" id="email" required><br>
+        <label for="username">Username</label>
+        <input name="username" id="username" required><br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" value="Register">
+    </form>
+    {{ registerError }}
+</body>
+
+{% endblock %}
