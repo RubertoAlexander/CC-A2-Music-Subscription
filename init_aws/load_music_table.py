@@ -15,7 +15,7 @@ def load_music(music, dynamodb=None):
         table.put_item(Item=song)
 
 if __name__ == '__main__':
-    with open("a2.json") as json_file:
+    with open("../a2.json") as json_file:
         music_list = json.load(json_file)
         # print(music_list['songs'][0]['artist'])
         load_music(music_list)
