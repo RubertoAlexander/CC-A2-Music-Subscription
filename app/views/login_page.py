@@ -1,5 +1,5 @@
 from app.models import dynamodb_login
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, make_response
 
 from app import app
 
@@ -16,6 +16,8 @@ def login():
     is_successful = dynamodb_login.authenticate_user(form_email, form_password)
     
     if is_successful:
-        return redirect('/')
+        response = make_response(redirect('/'))
+        response.set_cookie('email', form_email)
+        return response
     else:
         return render_template('login.html', loginError='Email or password is invalid')

@@ -33,7 +33,7 @@ def create_music_table(dynamodb=None):
     )
     return table
 
-
+# Task 1.2 - Creating a music table in DynamoDB
 if __name__ == '__main__':
     music_table = create_music_table()
     print("Table status:", music_table.table_status)

@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<body class="container">
+    <div class="container row">
+        <div class="col-sm"></div>
+        <div class="col-sm"></div>
+        <ul class="nav col-sm">
+            <li class="nav-item">
+                <h4>{{ user_name }}</h4>
+            </li>
+            <li class="nav-link">
+                <button><a href="/logout">Logout</a></button>
+            </li>
+        </ul>
+    </div>
+    <div class="container row">
+        <div class="col-4">
+            <h2>Query</h2>
+            <form method="POST" action="/">
+                <label for="title">Title</label>
+                <input name="title" id="title"><br>
+
+                <label for="artist">Artist</label>
+                <input name="artist" id="artist"><br>
+
+                <label for="year">Year</label>  
+                <input name="year" id="year"><br>
+
+                <input type="submit" value="Query">
+            </form>
+            {{ scan_error }}
+            {% if scan_songs %}
+                {% for song in scan_songs %}
+                    <h4>{{ song['artist'] }} - {{ song['title'] }}</h4> 
+                    <p>{{ song['year'] }}</p>
+                    <img src="{{ song['db_url'] }}" width="120", height="120">
+                    <form method="POST" action="/subscribe">
+                        <input type="hidden" name="song_key" id="song_key" value = "{{ song['artist'] }}#{{ song['title'] }}" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-8">
+            <h2>Subscriptions</h2>
+            {% for song in subscriptions %}
+
+                <h4>{{ song['artist'] }} - {{ song['title'] }}</h4> 
+                <p>{{ song['year'] }}</p>
+                <img src="{{ song['db_url'] }}" width="120", height="120">
+                <form method="POST" action="/remove">
+                    <input type="hidden" name="song_key" id="song_key" value = "{{ song['artist'] }}#{{ song['title'] }}" />
+                    <input type="submit" value="Remove" />
+                </form>
+
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

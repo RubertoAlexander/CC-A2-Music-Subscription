@@ -5,7 +5,6 @@ from botocore.exceptions import ClientError
 LOGIN_TABLE = dynamodb.Table('login')
 
 def authenticate_user(email: str, password: str) -> bool:
-    
     user = get_user(email=email)
     if user:
         if user['password'] == password:
