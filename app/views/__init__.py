@@ -1,0 +1,1 @@
+from . import login_page, register_page, main, logout

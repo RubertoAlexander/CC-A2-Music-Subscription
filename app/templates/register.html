@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<body class="container">
+    <div class="row">
+        <div class="col-sm"></div>
+
+        <form method="post" class="container col-sm">
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" name="email" id="email" required><br>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" name="username" id="username" required><br>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password" required><br>
+            </div>
+            <input class="btn btn-secondary" type="submit" value="Register">
+            <h2>{{ registerError }}</h2>
+        </form>
+        
+        <div class="col-sm"></div>
+    </div>
+</body>
+
+{% endblock %}
